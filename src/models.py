@@ -69,10 +69,10 @@ class Like(Base):
 class Follower(Base):
     __tablename__ = 'follower'
 
-    user_from_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
-    user_to_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    id = Column(Integer, primary_key=True)
+    user_from_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user_to_id = Column(Integer, ForeignKey('user.id'), nullable=False)
 
-    
     follower = relationship('User', foreign_keys=[user_from_id], back_populates='following')
     followed = relationship('User', foreign_keys=[user_to_id], back_populates='followers')
 
